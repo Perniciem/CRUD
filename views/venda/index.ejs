@@ -1,0 +1,24 @@
+<h1>Lista de vendas</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>venda</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% vendas.forEach(venda => { %>
+            <tr>
+                <td><%= venda.id %></td>
+                <td><%= venda.nome %></td>
+                <td>
+                    <a href="/vendas/<%= venda.id %>" class="btn btn-primary">View</a>
+                    <a href="/vendas/<%= venda.id %>/edit" class="btn btn-warning">Edit</a>
+                    <form action="/vendas/<%= venda.id %>?_method=DELETE" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>

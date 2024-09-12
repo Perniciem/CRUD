@@ -24,3 +24,13 @@ CREATE TABLE produtos (
     categoria INT NOT NULL,
     FOREIGN KEY (categoria) REFERENCES categorias(id)
 );
+
+CREATE TABLE venda (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    vtotal DECIMAL (10,2) NOT NULL,
+    data_venda DATE NOT NULL,
+    usuario INT NOT NULL,
+    produto INT NOT NULL,
+    FOREIGN KEY (produto) REFERENCES produtos(id),
+    FOREIGN KEY (usuario) REFERENCES users(id),
+);
