@@ -2,8 +2,8 @@ const db = require('../config/db');
 
 const venda = {
     create: (venda, callback) => {
-        const query = 'INSERT INTO vendas () VALUES (?)';
-        db.query(query, [venda.], (err, results) => {
+        const query = 'INSERT INTO vendas (id, vtotal, data_venda, usuario, produto, quantidade) VALUES (?, ?, ?, ?, ?, ?)';
+        db.query(query, [id, vendas.vtotal, vendas.data_venda, vendas.usuario, vendas.produto, vendas.quantidade], (err, results) => {
             if (err) {
                 return callback(err);
             }
@@ -12,7 +12,7 @@ const venda = {
     },
 
     findById: (id, callback) => {
-        const query = 'SELECT * FROM vendas WHERE id = ?';
+        const query = 'SELECT vendas.*, vendas FROM vendas WHERE id = ?';
         db.query(query, [id], (err, results) => {
             if (err) {
                 return callback(err);
@@ -21,19 +21,9 @@ const venda = {
         });
     },
 
-    findByvendaname: (nome, callback) => {
-        const query = 'SELECT * FROM vendas WHERE nome = ?';
-        db.query(query, [nome], (err, results) => {
-            if (err) {
-                return callback(err);
-            }
-            callback(null, results[0]);
-        });
-    },
-
-    update: (id, venda, callback) => {
-        const query = 'UPDATE vendas SET nome = ? WHERE id = ?';
-        db.query(query, [venda.nome,id], (err, results) => {
+    update: (id, vendas, callback) => {
+        const query = 'UPDATE vendas SET vtotal = ?, data_venda = ?, usuario = ?, produto = ?, quantidade = ? WHERE id = ?';
+        db.query(query, [id, vendas.vtotal, vendas.data_venda, vendas.usuario, vendas.produto, vendas.quantidade], (err, results) => {
             if (err) {
                 return callback(err);
             }
@@ -52,7 +42,7 @@ const venda = {
     },
 
     getAll: (callback) => {
-        const query = 'SELECT * FROM vendas';
+        const query = 'SELECT id, vendas.vtotal, vendas.data_venda, vendas.usuario, vendas.produto, vendas.quantidade FROM vendas';
         db.query(query, (err, results) => {
             if (err) {
                 return callback(err);

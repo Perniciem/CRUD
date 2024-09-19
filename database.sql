@@ -1,6 +1,6 @@
-CREATE DATABASE CRUD;
+CREATE DATABASE CRUD_GUSTAVO;
 
-USE CRUD;
+USE CRUD_GUSTAVO;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -14,7 +14,6 @@ CREATE TABLE categorias (
     nome VARCHAR(255) NOT NULL
 );
 
-//crie a tabela produtos com os campos id, nome, descricao e preco
 CREATE TABLE produtos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
@@ -25,12 +24,13 @@ CREATE TABLE produtos (
     FOREIGN KEY (categoria) REFERENCES categorias(id)
 );
 
-CREATE TABLE venda (
+CREATE TABLE vendas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     vtotal DECIMAL (10,2) NOT NULL,
     data_venda DATE NOT NULL,
     usuario INT NOT NULL,
     produto INT NOT NULL,
+    quantidade INT NOT NULL,
     FOREIGN KEY (produto) REFERENCES produtos(id),
     FOREIGN KEY (usuario) REFERENCES users(id),
 );
